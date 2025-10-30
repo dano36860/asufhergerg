@@ -1,1 +1,1 @@
-https://dano36860.github.io/asufhergerg/
+https://dano36860.github.io/asufhergerg/index.html
